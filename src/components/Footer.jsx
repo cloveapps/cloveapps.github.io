@@ -2,8 +2,7 @@ import React from "react";
 import { Link } from "gatsby";
 import styled from "@emotion/styled";
 import colors from "styles/colors";
-import Logo from "components/_ui/Logo";
-import spooch from "images/oscar-icon.png"
+import FooterLogo from "components/_ui/FooterLogo";
 
 const FooterContainer = styled("div")`
     padding-top: 3.75em;
@@ -28,13 +27,6 @@ const FooterAuthor = styled("a")`
 
      &:hover {
          color: ${colors.blue900};
-
-        .FooterSpooch {
-            animation-name: rotate;
-            animation-duration: 1.5s;
-            animation-iteration-count: infinite;
-            animation-timing-function: linear;
-        }
     }
 
     @keyframes rotate {
@@ -43,19 +35,13 @@ const FooterAuthor = styled("a")`
     }
 `
 
-const FooterSpooch = styled("img")`
-    max-width: 33px;
-    margin-top: 0.25em;
-`
-
 const Footer = () => (
     <FooterContainer>
         <Link to="/">
-            <Logo />
+            <FooterLogo />
         </Link>
-        <FooterAuthor href="https://www.marguerite.io/?utm_source=prist&utm_medium=footer&utm_campaign=prist_starter">
-            © 2019 — Designed & developed by Marguerite Roth
-            <FooterSpooch className="FooterSpooch" src={spooch} />
+        <FooterAuthor href="https://clovecrypto.com">
+            © 2020 — Clove Inc.
         </FooterAuthor>
     </FooterContainer>
 )
