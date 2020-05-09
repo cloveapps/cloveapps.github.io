@@ -294,7 +294,7 @@ export const query = graphql`
           about_link
         }
       }
-      allProducts(sortBy: order_ASC, first: 2) {
+      allProducts(sortBy: order_ASC, first: 1) {
         edges {
           node {
             product_title

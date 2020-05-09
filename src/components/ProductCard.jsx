@@ -122,11 +122,8 @@ const ProductCardImageContainer = styled("div")`
     align-items: flex-end;
     overflow: hidden;
     position: relative;
-    padding-left: 2em;
-    padding-right: 2em;
 
     @media(max-width:${dimensions.maxwidthTablet}px) {
-        padding-top: 3em;
         max-height: 200px;
         flex-direction: column;
         align-items: center;
@@ -147,12 +144,10 @@ const ProductCardImageContainer = styled("div")`
     }
 
     img {
-        max-width: 400px;
         width: 100%;
         box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.04);
 
         @media(max-width:${dimensions.maxwidthTablet}px) {
-            max-width: 300px;
         }
     }
 `
