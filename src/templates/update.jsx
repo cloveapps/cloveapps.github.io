@@ -8,7 +8,7 @@ import styled from "@emotion/styled";
 import colors from "styles/colors";
 import Layout from "components/Layout";
 
-const PostHeroContainer = styled("div")`
+const UpdateHeroContainer = styled("div")`
     max-height: 500px;
     overflow: hidden;
     display: flex;
@@ -21,7 +21,7 @@ const PostHeroContainer = styled("div")`
     }
 `
 
-const PostHeroAnnotation = styled("div")`
+const UpdateHeroAnnotation = styled("div")`
     padding-top: 0.25em;
 
     h6 {
@@ -36,7 +36,7 @@ const PostHeroAnnotation = styled("div")`
     }
 `
 
-const PostCategory = styled("div")`
+const UpdateCategory = styled("div")`
     max-width: 550px;
     margin: 0 auto;
     text-align: center;
@@ -49,7 +49,7 @@ const PostCategory = styled("div")`
     }
 `
 
-const PostTitle = styled("div")`
+const UpdateTitle = styled("div")`
     max-width: 550px;
     margin: 0 auto;
     text-align: center;
@@ -59,7 +59,7 @@ const PostTitle = styled("div")`
     }
 `
 
-const PostBody = styled("div")`
+const UpdateBody = styled("div")`
     max-width: 550px;
     margin: 0 auto;
 
@@ -73,7 +73,7 @@ const PostBody = styled("div")`
     }
 `
 
-const PostMetas = styled("div")`
+const UpdateMetas = styled("div")`
     max-width: 550px;
     margin: 0 auto;
     display: flex;
@@ -84,19 +84,19 @@ const PostMetas = styled("div")`
     color: ${colors.grey600};
 `
 
-const PostAuthor = styled("div")`
+const UpdateAuthor = styled("div")`
     margin: 0;
 `
 
-const PostDate = styled("div")`
+const UpdateDate = styled("div")`
     margin: 0;
 `
 
-const Post = ({ post, meta }) => {
+const Update = ({ update, meta }) => {
     return (
         <>
             <Helmet
-                title={`${post.post_title[0].text}`}
+                title={`${update.update_title[0].text}`}
                 titleTemplate={`%s | ${meta.title}`}
                 meta={[
                     {
@@ -105,7 +105,7 @@ const Post = ({ post, meta }) => {
                     },
                     {
                         property: `og:title`,
-                        content: `${post.post_title[0].text} | Clove Crypto`,
+                        content: `${update.update_title[0].text} | Clove Crypto`,
                     },
                     {
                         property: `og:description`,
@@ -134,63 +134,63 @@ const Post = ({ post, meta }) => {
                 ].concat(meta)}
             />
             <Layout>
-                <PostCategory>
-                    {RichText.render(post.post_category)}
-                </PostCategory>
-                <PostTitle>
-                    {RichText.render(post.post_title)}
-                </PostTitle>
-                <PostMetas>
-                    <PostAuthor>
-                        {post.post_author}
-                    </PostAuthor>
-                    <PostDate>
-                        <Moment format="MMMM D, YYYY">{post.post_date}</Moment>
-                    </PostDate>
-                </PostMetas>
-                    {post.post_hero_image && (
-                    <PostHeroContainer>
-                        <img src={post.post_hero_image.url} alt="bees" />
-                        <PostHeroAnnotation>
-                            {RichText.render(post.post_hero_annotation)}
-                        </PostHeroAnnotation>
-                    </PostHeroContainer>
+                <UpdateCategory>
+                    {RichText.render(update.update_category)}
+                </UpdateCategory>
+                <UpdateTitle>
+                    {RichText.render(update.update_title)}
+                </UpdateTitle>
+                <UpdateMetas>
+                    <UpdateAuthor>
+                        {update.update_author}
+                    </UpdateAuthor>
+                    <UpdateDate>
+                        <Moment format="MMMM D, YYYY">{update.update_date}</Moment>
+                    </UpdateDate>
+                </UpdateMetas>
+                    {update.update_hero_image && (
+                    <UpdateHeroContainer>
+                        <img src={update.update_hero_image.url} alt="bees" />
+                        <UpdateHeroAnnotation>
+                            {RichText.render(update.update_hero_annotation)}
+                        </UpdateHeroAnnotation>
+                    </UpdateHeroContainer>
                 )}
-                <PostBody>
-                    {RichText.render(post.post_body)}
-                </PostBody>
+                <UpdateBody>
+                    {RichText.render(update.update_body)}
+                </UpdateBody>
             </Layout>
         </>
     )
 }
 
 export default ({ data }) => {
-    const postContent = data.prismic.allPosts.edges[0].node;
+    const updateContent = data.prismic.allUpdates.edges[0].node;
     const meta = data.site.siteMetadata;
     return (
-        <Post post={postContent} meta={meta}/>
+        <Update update={updateContent} meta={meta}/>
     )
 }
 
-Post.propTypes = {
-    post: PropTypes.object.isRequired,
+Update.propTypes = {
+    update: PropTypes.object.isRequired,
     meta: PropTypes.object.isRequired,
 };
 
 export const query = graphql`
-    query PostQuery($uid: String) {
+    query UpdateQuery($uid: String) {
         prismic {
-            allPosts(uid: $uid) {
+            allUpdates(uid: $uid) {
                 edges {
                     node {
-                        post_title
-                        post_hero_image
-                        post_hero_annotation
-                        post_date
-                        post_category
-                        post_body
-                        post_author
-                        post_preview_description
+                        update_title
+                        update_hero_image
+                        update_hero_annotation
+                        update_date
+                        update_category
+                        update_body
+                        update_author
+                        update_preview_description
                         _meta {
                             uid
                         }

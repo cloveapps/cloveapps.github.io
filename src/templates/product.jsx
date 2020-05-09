@@ -8,7 +8,7 @@ import { RichText } from "prismic-reactjs";
 import Button from "components/_ui/Button";
 import Layout from "components/Layout";
 
-const ProjectHeroContainer = styled("div")`
+const ProductHeroContainer = styled("div")`
     background: ${colors.grey200};
     display: flex;
     justify-content: center;
@@ -23,13 +23,13 @@ const ProjectHeroContainer = styled("div")`
     }
 `
 
-const ProjectTitle = styled("div") `
+const ProductTitle = styled("div") `
     max-width: 550px;
     margin: 0 auto;
     text-align: center;
 `
 
-const ProjectBody = styled("div")`
+const ProductBody = styled("div")`
     max-width: 550px;
     margin: 0 auto;
 
@@ -43,18 +43,18 @@ const ProjectBody = styled("div")`
     }
 `
 
-const WorkLink = styled(Link)`
+const ProductsLink = styled(Link)`
     margin-top: 3em;
     display: block;
     text-align: center;
 `
 
 
-const Project = ({ project, meta }) => {
+const Product = ({ product, meta }) => {
     return (
         <>
             <Helmet
-                title={`${project.project_title[0].text}`}
+                title={`${product.product_title[0].text}`}
                 titleTemplate={`%s | ${meta.title}`}
                 meta={[
                     {
@@ -63,7 +63,7 @@ const Project = ({ project, meta }) => {
                     },
                     {
                         property: `og:title`,
-                        content: `${project.project_title[0].text} | Clove Crypto`,
+                        content: `${product.product_title[0].text} | Clove Crypto`,
                     },
                     {
                         property: `og:description`,
@@ -92,52 +92,51 @@ const Project = ({ project, meta }) => {
                 ].concat(meta)}
             />
             <Layout>
-                <ProjectTitle>
-                    {RichText.render(project.project_title)}
-                </ProjectTitle>
-                {project.project_hero_image && (
-                    <ProjectHeroContainer>
-                        <img src={project.project_hero_image.url} alt="bees" />
-                    </ProjectHeroContainer>
+                <ProductTitle>
+                    {RichText.render(product.product_title)}
+                </ProductTitle>
+                {product.product_hero_image && (
+                    <ProductHeroContainer>
+                        <img src={product.product_hero_image.url} alt="bees" />
+                    </ProductHeroContainer>
                 )}
-                <ProjectBody>
-                    {RichText.render(project.project_description)}
-                    <WorkLink to={"/work"}>
+                <ProductBody>
+                    {RichText.render(product.product_description)}
+                    <ProductsLink to={"/products"}>
                         <Button className="Button--secondary">
-                            See other work
+                            All Products
                         </Button>
-                    </WorkLink>
-                </ProjectBody>
+                    </ProductsLink>
+                </ProductBody>
             </Layout>
         </>
     )
 }
 
 export default ({ data }) => {
-    const projectContent = data.prismic.allProjects.edges[0].node;
+    const productContent = data.prismic.allProducts.edges[0].node;
     const meta = data.site.siteMetadata;
     return (
-        <Project project={projectContent} meta={meta}/>
+        <Product product={productContent} meta={meta}/>
     )
 }
 
-Project.propTypes = {
-    project: PropTypes.object.isRequired,
+Product.propTypes = {
+    product: PropTypes.object.isRequired,
 };
 
 export const query = graphql`
-    query ProjectQuery($uid: String) {
+    query ProductQuery($uid: String) {
         prismic {
-            allProjects(uid: $uid) {
+            allProducts(uid: $uid) {
                 edges {
                     node {
-                        project_title
-                        project_preview_description
-                        project_preview_thumbnail
-                        project_category
-                        project_post_date
-                        project_hero_image
-                        project_description
+                        product_title
+                        product_preview_description
+                        product_preview_thumbnail
+                        product_category
+                        product_hero_image
+                        product_description
                         _meta {
                             uid
                         }

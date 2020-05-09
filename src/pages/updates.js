@@ -5,13 +5,13 @@ import { graphql } from "gatsby";
 import styled from "@emotion/styled";
 import dimensions from "styles/dimensions";
 import Layout from "components/Layout";
-import PostCard from "components/PostCard";
+import UpdateCard from "components/UpdateCard";
 
-const BlogTitle = styled("h1")`
+const UpdatesTitle = styled("h1")`
     margin-bottom: 1em;
 `
 
-const BlogGrid = styled("div")`
+const UpdatesGrid = styled("div")`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 2.5em;
@@ -27,10 +27,10 @@ const BlogGrid = styled("div")`
     }
 `
 
-const Blog = ({ posts, meta }) => (
+const Updates = ({ updates, meta }) => (
     <>
         <Helmet
-            title={`Blog`}
+            title={`Updates`}
             titleTemplate={`%s | Clove Crypto`}
             meta={[
                 {
@@ -39,7 +39,7 @@ const Blog = ({ posts, meta }) => (
                 },
                 {
                     property: `og:title`,
-                    content: `Blog | Clove Crypto`,
+                    content: `Updates | Clove Crypto`,
                 },
                 {
                     property: `og:description`,
@@ -68,38 +68,38 @@ const Blog = ({ posts, meta }) => (
             ].concat(meta)}
         />
         <Layout>
-            <BlogTitle>
-                Blog
-            </BlogTitle>
-            <BlogGrid>
-                {posts.map((post, i) => (
-                    <PostCard
+            <UpdatesTitle>
+                Updates
+            </UpdatesTitle>
+            <UpdatesGrid>
+                {updates.map((update, i) => (
+                    <UpdateCard
                         key={i}
-                        author={post.node.post_author}
-                        category={post.node.post_category}
-                        title={post.node.post_title}
-                        date={post.node.post_date}
-                        description={post.node.post_preview_description}
-                        uid={post.node._meta.uid}
+                        author={update.node.update_author}
+                        category={update.node.update_category}
+                        title={update.node.update_title}
+                        date={update.node.update_date}
+                        description={update.node.update_preview_description}
+                        uid={update.node._meta.uid}
                     />
                 ))}
-            </BlogGrid>
+            </UpdatesGrid>
         </Layout>
     </>
 );
 
 export default ({ data }) => {
-    const posts = data.prismic.allPosts.edges;
+    const updates = data.prismic.allUpdates.edges;
     const meta = data.site.siteMetadata;
-    if (!posts) return null;
+    if (!updates) return null;
 
     return (
-        <Blog posts={posts} meta={meta}/>
+        <Updates updates={updates} meta={meta}/>
     )
 }
 
-Blog.propTypes = {
-    posts: PropTypes.array.isRequired,
+Updates.propTypes = {
+    updates: PropTypes.array.isRequired,
     meta: PropTypes.object.isRequired,
 };
 
@@ -107,14 +107,14 @@ Blog.propTypes = {
 export const query = graphql`
     {
         prismic {
-            allPosts(sortBy: post_date_DESC) {
+            allUpdates(sortBy: update_date_DESC) {
                 edges {
                     node {
-                        post_title
-                        post_date
-                        post_category
-                        post_preview_description
-                        post_author
+                        update_title
+                        update_date
+                        update_category
+                        update_preview_description
+                        update_author
                         _meta {
                             uid
                         }

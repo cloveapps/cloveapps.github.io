@@ -6,11 +6,12 @@ import dimensions from "styles/dimensions";
 import HeaderLogo from "components/_ui/HeaderLogo";
 
 const HeaderContainer = styled("div")`
-    padding-top: 3.75em;
+    padding-top: 3em;
     padding-bottom: 3em;
 `
 
 const HeaderContent = styled("div")`
+    height: 30px;
     display: flex;
     justify-content: space-between;
 `
@@ -38,8 +39,8 @@ const HeaderLinks = styled("div")`
         font-weight: 600;
         font-size: 0.95em;
         height: 100%;
-        padding-bottom: 1.25em;
-        padding-top: 0.25em;
+        padding-bottom: 0.25em;
+        padding-top: .50em;
         display: block;
         position: relative;
 
@@ -81,13 +82,8 @@ const Header = () => (
             <HeaderLinks>
                 <Link
                     activeClassName="Link--is-active"
-                    to="/work">
-                    Work
-                </Link>
-                <Link
-                    activeClassName="Link--is-active"
-                    to="/blog">
-                    Blog
+                    to="/products">
+                    Products
                 </Link>
             </HeaderLinks>
         </HeaderContent>

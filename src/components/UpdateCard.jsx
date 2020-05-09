@@ -6,7 +6,7 @@ import styled from "@emotion/styled";
 import colors from "styles/colors";
 import PropTypes from "prop-types";
 
-const PostCardContainer = styled(Link)`
+const UpdateCardContainer = styled(Link)`
     border: 1px solid ${colors.grey200};
     padding: 3em 2.5em 2.25em 2.5em;
     border-radius: 3px;
@@ -22,7 +22,7 @@ const PostCardContainer = styled(Link)`
         transition: all 150ms ease-in-out;
         cursor: pointer;
 
-        .PostCardAction {
+        .UpdateCardAction {
             color: ${colors.blue500};
             transition: all 150ms ease-in-out;
 
@@ -35,17 +35,17 @@ const PostCardContainer = styled(Link)`
     }
 `
 
-const PostCategory = styled("h6")`
+const UpdateCategory = styled("h6")`
     font-weight: 600;
     color: ${colors.grey600};
 `
 
-const PostTitle = styled("h3")`
+const UpdateTitle = styled("h3")`
     margin: 0;
     margin-top: 0.5em;
 `
 
-const PostMetas = styled("div")`
+const UpdateMetas = styled("div")`
     display: flex;
     align-items: center;
     margin-top: 1.5em;
@@ -54,15 +54,15 @@ const PostMetas = styled("div")`
     color: ${colors.grey600};
 `
 
-const PostAuthor = styled("div")`
+const UpdateAuthor = styled("div")`
     margin: 0;
 `
 
-const PostDate = styled("div")`
+const UpdateDate = styled("div")`
     margin: 0;
 `
 
-const PostDescription = styled("div")`
+const UpdateDescription = styled("div")`
     margin-top: 2em;
     margin-bottom: 4em;
 
@@ -71,7 +71,7 @@ const PostDescription = styled("div")`
     }
 `
 
-const PostCardAction = styled("div")`
+const UpdateCardAction = styled("div")`
     font-weight: 600;
     text-decoration: none;
     color: currentColor;
@@ -85,34 +85,34 @@ const PostCardAction = styled("div")`
     }
 `
 
-const PostCard = ({ author, category, date, title, description, uid}) => (
-    <PostCardContainer className="BlogPostCard" to={`/blog/${uid}`}>
-        <PostCategory>
+const UpdateCard = ({ author, category, date, title, description, uid}) => (
+    <UpdateCardContainer className="UpdateCard" to={`/updates/${uid}`}>
+        <UpdateCategory>
             {category[0].text}
-        </PostCategory>
-        <PostTitle>
+        </UpdateCategory>
+        <UpdateTitle>
             {title[0].text}
-        </PostTitle>
-        <PostDescription>
+        </UpdateTitle>
+        <UpdateDescription>
             {RichText.render(description)}
-        </PostDescription>
-        <PostCardAction className="PostCardAction">
+        </UpdateDescription>
+        <UpdateCardAction className="UpdateCardAction">
             Read more <span>&#8594;</span>
-        </PostCardAction>
-        <PostMetas>
-            <PostAuthor>
+        </UpdateCardAction>
+        <UpdateMetas>
+            <UpdateAuthor>
                 {author}
-            </PostAuthor>
-            <PostDate>
+            </UpdateAuthor>
+            <UpdateDate>
                 <Moment format="MMMM D, YYYY">{date}</Moment>
-            </PostDate>
-        </PostMetas>
-    </PostCardContainer>
+            </UpdateDate>
+        </UpdateMetas>
+    </UpdateCardContainer>
 )
 
-export default PostCard;
+export default UpdateCard;
 
-PostCard.propTypes = {
+UpdateCard.propTypes = {
     author: PropTypes.string.isRequired,
     category: PropTypes.array.isRequired,
     date: PropTypes.string.isRequired,

@@ -4,16 +4,16 @@ import Helmet from "react-helmet";
 import { graphql } from "gatsby";
 import styled from "@emotion/styled";
 import Layout from "components/Layout";
-import ProjectCard from "components/ProjectCard";
+import ProductCard from "components/ProductCard";
 
-const WorkTitle = styled("h1")`
+const ProductsTitle = styled("h1")`
     margin-bottom: 1em;
 `
 
-const Work = ({ projects, meta }) => (
+const Products = ({ products, meta }) => (
     <>
         <Helmet
-            title={`Work`}
+            title={`Products`}
             titleTemplate={`%s | Clove Crypto`}
             meta={[
                 {
@@ -22,7 +22,7 @@ const Work = ({ projects, meta }) => (
                 },
                 {
                     property: `og:title`,
-                    content: `Work | Clove Crypto`,
+                    content: `Products | Clove Crypto`,
                 },
                 {
                     property: `og:description`,
@@ -51,18 +51,18 @@ const Work = ({ projects, meta }) => (
             ].concat(meta)}
         />
         <Layout>
-            <WorkTitle>
-                Work
-            </WorkTitle>
+            <ProductsTitle>
+                Products
+            </ProductsTitle>
             <>
-                {projects.map((project, i) => (
-                    <ProjectCard
+                {products.map((product, i) => (
+                    <ProductCard
                         key={i}
-                        category={project.node.project_category}
-                        title={project.node.project_title}
-                        description={project.node.project_preview_description}
-                        thumbnail={project.node.project_preview_thumbnail}
-                        uid={project.node._meta.uid}
+                        category={product.node.product_category}
+                        title={product.node.product_title}
+                        description={product.node.product_preview_description}
+                        thumbnail={product.node.product_preview_thumbnail}
+                        uid={product.node._meta.uid}
                     />
                 ))}
             </>
@@ -71,30 +71,29 @@ const Work = ({ projects, meta }) => (
 );
 
 export default ({ data }) => {
-    const projects = data.prismic.allProjects.edges;
+    const products = data.prismic.allProducts.edges;
     const meta = data.site.siteMetadata;
-    if (!projects) return null;
+    if (!products) return null;
 
     return (
-        <Work projects={projects} meta={meta}/>
+        <Products products={products} meta={meta}/>
     )
 }
 
-Work.propTypes = {
-    projects: PropTypes.array.isRequired,
+Products.propTypes = {
+    products: PropTypes.array.isRequired,
 };
 
 export const query = graphql`
     {
         prismic {
-            allProjects {
+            allProducts (sortBy: order_ASC) {
                 edges {
                     node {
-                        project_title
-                        project_preview_description
-                        project_preview_thumbnail
-                        project_category
-                        project_post_date
+                        product_title
+                        product_preview_description
+                        product_preview_thumbnail
+                        product_category
                         _meta {
                             uid
                         }

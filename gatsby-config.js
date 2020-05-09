@@ -27,7 +27,7 @@ module.exports = {
         resolve: 'gatsby-source-prismic-graphql',
         options: {
             repositoryName: 'clovecrypto-web',
-            linkResolver: () => post => `/${post.uid}`,
+            linkResolver: () => page => `/${page.uid}`,
         }
     },
     {

@@ -6,7 +6,7 @@ import dimensions from "styles/dimensions";
 import colors from "styles/colors";
 import PropTypes from "prop-types";
 
-const ProjectCardContainer = styled(Link)`
+const ProductCardContainer = styled(Link)`
     display: grid;
     grid-template-columns: 4fr 7fr;
     box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.06);
@@ -31,7 +31,7 @@ const ProjectCardContainer = styled(Link)`
         box-shadow: 0px 9px 24px rgba(0, 0, 0, 0.1);
         transition: all 150ms ease-in-out;
 
-        .ProjectCardAction {
+        .ProductCardAction {
             color: ${colors.blue500};
             transition: all 150ms ease-in-out;
 
@@ -42,19 +42,19 @@ const ProjectCardContainer = styled(Link)`
             }
         }
 
-        .ProjectCardContent::before {
+        .ProductCardContent::before {
             opacity: 0.02;
             transition: all 150ms ease-in-out;
         }
 
-        .ProjectCardImageContainer::before {
+        .ProductCardImageContainer::before {
             opacity: 0.2;
             transition: all 150ms ease-in-out;
         }
     }
 `
 
-const ProjectCardContent = styled("div")`
+const ProductCardContent = styled("div")`
     background: white;
     padding: 4em 3em 2.25em 3em;
     position: relative;
@@ -81,17 +81,17 @@ const ProjectCardContent = styled("div")`
     }
 `
 
-const ProjectCardCategory = styled("h6")`
+const ProductCardCategory = styled("h6")`
     font-weight: 600;
     color: ${colors.grey600};
 `
 
-const ProjectCardTitle = styled("h3")`
+const ProductCardTitle = styled("h3")`
     margin-bottom: 0.5em;
     margin-top: 0.5em;
 `
 
-const ProjectCardBlurb = styled("div")`
+const ProductCardBlurb = styled("div")`
     margin-bottom: 0.5em;
     margin-top: 0.5em;
     margin-bottom: 5em;
@@ -101,7 +101,7 @@ const ProjectCardBlurb = styled("div")`
     }
 `
 
-const ProjectCardAction = styled("div")`
+const ProductCardAction = styled("div")`
     font-weight: 600;
     text-decoration: none;
     color: currentColor;
@@ -115,7 +115,7 @@ const ProjectCardAction = styled("div")`
     }
 `
 
-const ProjectCardImageContainer = styled("div")`
+const ProductCardImageContainer = styled("div")`
     background: ${colors.grey200};
     display: flex;
     justify-content: center;
@@ -157,31 +157,31 @@ const ProjectCardImageContainer = styled("div")`
     }
 `
 
-const ProjectCard = ({ category, title, description, thumbnail, uid}) => (
-    <ProjectCardContainer to={`/work/${uid}`}>
-        <ProjectCardContent className="ProjectCardContent">
-            <ProjectCardCategory>
+const ProductCard = ({ category, title, description, thumbnail, uid}) => (
+    <ProductCardContainer to={`/products/${uid}`}>
+        <ProductCardContent className="ProductCardContent">
+            <ProductCardCategory>
                 {category[0].text}
-            </ProjectCardCategory>
-            <ProjectCardTitle>
+            </ProductCardCategory>
+            <ProductCardTitle>
                 {title[0].text}
-            </ProjectCardTitle>
-            <ProjectCardBlurb>
+            </ProductCardTitle>
+            <ProductCardBlurb>
                 {RichText.render(description)}
-            </ProjectCardBlurb>
-            <ProjectCardAction className="ProjectCardAction">
+            </ProductCardBlurb>
+            <ProductCardAction className="ProductCardAction">
                 Details <span>&#8594;</span>
-            </ProjectCardAction>
-        </ProjectCardContent>
-        <ProjectCardImageContainer className="ProjectCardImageContainer">
+            </ProductCardAction>
+        </ProductCardContent>
+        <ProductCardImageContainer className="ProductCardImageContainer">
             <img src={thumbnail.url} alt={title[0].text}/>
-        </ProjectCardImageContainer>
-    </ProjectCardContainer>
+        </ProductCardImageContainer>
+    </ProductCardContainer>
 )
 
-export default ProjectCard;
+export default ProductCard;
 
-ProjectCard.propTypes = {
+ProductCard.propTypes = {
     category: PropTypes.array.isRequired,
     thumbnail: PropTypes.object.isRequired,
     title: PropTypes.array.isRequired,

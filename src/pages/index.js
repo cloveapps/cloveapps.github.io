@@ -9,7 +9,7 @@ import dimensions from "styles/dimensions";
 import Button from "components/_ui/Button";
 import About from "components/About";
 import Layout from "components/Layout";
-import ProjectCard from "components/ProjectCard";
+import ProductCard from "components/ProductCard";
 
 const Hero = styled("div")`
     padding-top: 2.5em;
@@ -28,20 +28,20 @@ const Hero = styled("div")`
             text-decoration: none;
             transition: all 100ms ease-in-out;
 
-            &:nth-of-type(1) { color: ${colors.blue500}; }
+            &:nth-of-type(1) { color: ${colors.green500}; }
             &:nth-of-type(2) { color: ${colors.orange500}; }
-            &:nth-of-type(3) { color: ${colors.purple500}; }
-            &:nth-of-type(4) { color: ${colors.green500}; }
+            &:nth-of-type(3) { color: ${colors.blue500}; }
+            &:nth-of-type(4) { color: ${colors.purple500}; }
             &:nth-of-type(5) { color: ${colors.teal500}; }
 
             &:hover {
                 cursor: pointer;
                 transition: all 100ms ease-in-out;
 
-                &:nth-of-type(1) { color: ${colors.blue600};    background-color: ${colors.blue200};}
+                &:nth-of-type(1) { color: ${colors.green600};    background-color: ${colors.green200};}
                 &:nth-of-type(2) { color: ${colors.orange600};  background-color: ${colors.orange200};}
-                &:nth-of-type(3) { color: ${colors.purple600};  background-color: ${colors.purple200};}
-                &:nth-of-type(4) { color: ${colors.green600};   background-color: ${colors.green200};}
+                &:nth-of-type(3) { color: ${colors.blue600};  background-color: ${colors.blue200};}
+                &:nth-of-type(4) { color: ${colors.purple600};   background-color: ${colors.purple200};}
                 &:nth-of-type(5) { color: ${colors.teal600};    background-color: ${colors.teal200};}
 
             }
@@ -63,7 +63,7 @@ const Section = styled("div")`
     }
 `
 
-const WorkAction = styled(Link)`
+const ProductsAction = styled(Link)`
     font-weight: 600;
     text-decoration: none;
     color: currentColor;
@@ -93,10 +93,10 @@ const WorkAction = styled(Link)`
     }
 `
 
-const RenderBody = ({ home, projects, meta }) => (
+const RenderBody = ({ home, products, meta }) => (
     <>
         <Helmet
-            title={`Clove Crypto - Power of Blockchain in Everyone's Pocket`}
+            title={`Driving the next wave of Blockchain adoption | Clove Crypto`}
             meta={[
                 {
                     name: `description`,
@@ -144,19 +144,22 @@ const RenderBody = ({ home, projects, meta }) => (
             </a>
         </Hero>
         <Section>
-            {projects.map((project, i) => (
-                <ProjectCard
+            {products.map((product, i) => (
+                <ProductCard
                     key={i}
-                    category={project.node.project_category}
-                    title={project.node.project_title}
-                    description={project.node.project_preview_description}
-                    thumbnail={project.node.project_preview_thumbnail}
-                    uid={project.node._meta.uid}
+                    category={product.node.product_category}
+                    title={product.node.product_title}
+                    description={product.node.product_preview_description}
+                    thumbnail={product.node.product_preview_thumbnail}
+                    uid={product.node._meta.uid}
                 />
             ))}
-            <WorkAction to={"/work"}>
-                See more work <span>&#8594;</span>
-            </WorkAction>
+            <ProductsAction to={"/products"}>
+                All Products <span>&#8594;</span>
+            </ProductsAction>
+        </Section>
+        <Section>
+            <h3>News</h3>
         </Section>
         <Section>
             {RichText.render(home.about_title)}
@@ -170,56 +173,50 @@ const RenderBody = ({ home, projects, meta }) => (
 
 export default ({ data }) => {
     //Required check for no data being returned
-    const doc = data.prismic.allHomepages.edges.slice(0, 1).pop();
-    const projects = data.prismic.allProjects.edges;
+    const doc = data.prismic.home_page;
+    const products = data.prismic.allProducts.edges;
     const meta = data.site.siteMetadata;
 
-    if (!doc || !projects) return null;
+    if (!doc || !products) return null;
 
     return (
         <Layout>
-            <RenderBody home={doc.node} projects={projects} meta={meta}/>
+            <RenderBody home={doc} products={products} meta={meta}/>
         </Layout>
     )
 }
 
 RenderBody.propTypes = {
     home: PropTypes.object.isRequired,
-    projects: PropTypes.array.isRequired,
+    products: PropTypes.array.isRequired,
     meta: PropTypes.object.isRequired,
 };
 
 export const query = graphql`
     {
         prismic {
-            allHomepages {
-                edges {
-                    node {
-                        hero_title
-                        hero_button_text
-                        hero_button_link {
-                            ... on PRISMIC__ExternalLink {
-                                _linkType
-                                url
-                            }
-                        }
-                        content
-                        about_title
-                        about_bio
-                        about_links {
-                            about_link
-                        }
+            home_page(lang: "en-us", uid: "home") {
+                hero_title
+                hero_button_text
+                hero_button_link {
+                    ... on PRISMIC__ExternalLink {
+                        _linkType
+                        url
                     }
                 }
+                about_title
+                about_bio
+                about_links {
+                    about_link
+                }
             }
-            allProjects {
+            allProducts (sortBy: order_ASC, first:2) {
                 edges {
                     node {
-                        project_title
-                        project_preview_description
-                        project_preview_thumbnail
-                        project_category
-                        project_post_date
+                        product_title
+                        product_preview_description
+                        product_preview_thumbnail
+                        product_category
                         _meta {
                             uid
                         }
