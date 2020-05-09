@@ -40,7 +40,7 @@ const HeaderLinks = styled("div")`
         font-size: 0.95em;
         height: 100%;
         padding-bottom: 0.25em;
-        padding-top: .50em;
+        padding-top: .74em;
         display: block;
         position: relative;
 

@@ -15,20 +15,20 @@ const HeaderLogo = () => (
       fill-rule="evenodd"
     >
       <text
-        id="Clove"
-        font-family="Inter-SemiBold, Inter"
-        font-size="36"
-        font-weight="500"
+        id="clove"
+        font-family="Inter-ExtraBold, Inter"
+        font-size="34"
+        font-weight="600"
         fill="#3F3F3F"
       >
-        <tspan x="46" y="28">
-          Clove
+        <tspan x="-1" y="29">
+          clove
         </tspan>
       </text>
       <polygon
         id="Polygon"
         fill="#FF3F3F"
-        points="13 12 13 0 31 3.19744231e-14 31 12 37 12 37 18 25 18 25 30 19 30 19 18 7 18 7 12"
+        points="99 18 99 10 111 10 111 18 115 18 115 22 107 22 107 30 103 30 103 22 95 22 95 18"
       ></polygon>
     </g>
   </svg>
