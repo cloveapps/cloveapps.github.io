@@ -29,34 +29,13 @@ exports.createPages = async ({ graphql, actions }) => {
                         }
                     }
                 }
-                allUpdates {
-                    edges {
-                        node {
-                            update_title
-                            update_hero_image
-                            update_hero_annotation
-                            update_date
-                            update_category
-                            update_body
-                            update_preview_description
-                            update_author
-                            _meta {
-                                uid
-                            }
-                        }
-                    }
-                }
             }
         }
     `)
     )
 
     const productsList = result.data.prismic.allProducts.edges;
-    const updatesList = result.data.prismic.allUpdates.edges;
-
     const productTemplate = require.resolve('./src/templates/product.jsx');
-    const updateTemplate = require.resolve('./src/templates/update.jsx');
-
     productsList.forEach(edge => {
         // The uid you assigned in Prismic is the slug!
         createPage({
@@ -66,18 +45,6 @@ exports.createPages = async ({ graphql, actions }) => {
             component: productTemplate,
             context: {
                 // Pass the unique ID (uid) through context so the template can filter by it
-                uid: edge.node._meta.uid,
-            },
-        })
-    })
-
-    updatesList.forEach(edge => {
-        createPage({
-            type: 'Update',
-            match: '/updates/:uid',
-            path: `/updates/${edge.node._meta.uid}`,
-            component: updateTemplate,
-            context: {
                 uid: edge.node._meta.uid,
             },
         })
