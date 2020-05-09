@@ -27,10 +27,10 @@ const Hero = styled("div")`
       transition: all 100ms ease-in-out;
 
       &:nth-of-type(1) {
-        color: ${colors.green500};
+        color: ${colors.orange500};
       }
       &:nth-of-type(2) {
-        color: ${colors.orange500};
+        color: ${colors.green500};
       }
       &:nth-of-type(3) {
         color: ${colors.blue500};
@@ -47,12 +47,12 @@ const Hero = styled("div")`
         transition: all 100ms ease-in-out;
 
         &:nth-of-type(1) {
-          color: ${colors.green600};
-          background-color: ${colors.green200};
-        }
-        &:nth-of-type(2) {
           color: ${colors.orange600};
           background-color: ${colors.orange200};
+        }
+        &:nth-of-type(2) {
+          color: ${colors.green600};
+          background-color: ${colors.green200};
         }
         &:nth-of-type(3) {
           color: ${colors.blue600};
@@ -126,37 +126,33 @@ const UpdateItem = styled("div")`
     }
   }
   &:nth-of-type(1) a {
-    color: ${colors.green500};
-    &:hover {
-      color: ${colors.green600};
-    }
-  }
-  &:nth-of-type(2) a {
     color: ${colors.orange500};
     &:hover {
       color: ${colors.orange600};
-      background-color: ${colors.orange200};
+    }
+  }
+  &:nth-of-type(2) a {
+    color: ${colors.green500};
+    &:hover {
+      color: ${colors.green600};
     }
   }
   &:nth-of-type(3) a {
     color: ${colors.blue500};
     &:hover {
       color: ${colors.blue600};
-      background-color: ${colors.blue200};
     }
   }
   &:nth-of-type(4) a {
     color: ${colors.purple500};
     &:hover {
       color: ${colors.purple600};
-      background-color: ${colors.purple200};
     }
   }
   &:nth-of-type(5) a {
     color: ${colors.teal500};
     &:hover {
       color: ${colors.teal600};
-      background-color: ${colors.teal200};
     }
   }
 `
