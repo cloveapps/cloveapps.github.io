@@ -222,7 +222,7 @@ const RenderBody = ({ home, products, updates, meta }) => (
       </ProductsAction>
     </Section>
     <Section>
-      <h3>What's new?</h3>
+      <h3>What's new</h3>
       {updates.map((update, i) => (
         <UpdateItem>
           <a
