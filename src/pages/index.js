@@ -120,40 +120,26 @@ const UpdateItem = styled("div")`
   a {
     text-decoration: none;
     transition: all 100ms ease-in-out;
+    color: ${colors.grey800};
     &:hover {
       cursor: pointer;
       transition: all 100ms ease-in-out;
     }
   }
-  &:nth-of-type(1) a {
+  &:nth-of-type(1) a span {
     color: ${colors.orange500};
-    &:hover {
-      color: ${colors.orange600};
-    }
   }
-  &:nth-of-type(2) a {
+  &:nth-of-type(2) a span {
     color: ${colors.green500};
-    &:hover {
-      color: ${colors.green600};
-    }
   }
-  &:nth-of-type(3) a {
+  &:nth-of-type(3) a span {
     color: ${colors.blue500};
-    &:hover {
-      color: ${colors.blue600};
-    }
   }
-  &:nth-of-type(4) a {
+  &:nth-of-type(4) a span {
     color: ${colors.purple500};
-    &:hover {
-      color: ${colors.purple600};
-    }
   }
-  &:nth-of-type(5) a {
+  &:nth-of-type(5) a span {
     color: ${colors.teal500};
-    &:hover {
-      color: ${colors.teal600};
-    }
   }
 `
 
@@ -231,7 +217,7 @@ const RenderBody = ({ home, products, updates, meta }) => (
             target="_blank"
             rel="noopener noreferrer"
           >
-            <h3>{update.node.update_title[0].text}</h3>
+            <h3><span>{update.node.update_type[0].text}</span>: {update.node.update_title[0].text}</h3>
           </a>
           <div>{update.node.update_body[0].text}</div>
         </UpdateItem>
@@ -303,10 +289,11 @@ export const query = graphql`
           }
         }
       }
-      allUpdates(sortBy: meta_lastPublicationDate_DESC) {
+      allUpdates(sortBy: priority_DESC) {
         edges {
           node {
             update_title
+            update_type
             update_body
             update_link {
               ... on PRISMIC__ExternalLink {
