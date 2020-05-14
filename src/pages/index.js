@@ -160,7 +160,7 @@ const UpdateItem = styled("div")`
 const RenderBody = ({ home, products, updates, meta }) => (
   <>
     <Helmet
-      title={`Driving the next wave of Blockchain adoption | Clove Crypto`}
+      title={`Clove Crypto - Driving the next wave of Blockchain adoption`}
       meta={[
         {
           name: `description`,
