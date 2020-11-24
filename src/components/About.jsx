@@ -97,7 +97,7 @@ const About = ({ bio, socialLinks }) => (
             {RichText.render(bio)}
         </AboutBio>
         <AboutActions>
-            <a href="mailto:hello@clovecrypto.com" target="_blank" rel="noopener noreferrer">
+            <a href="mailto:hello@clovelabs.com" target="_blank" rel="noopener noreferrer">
                 <Button className="Button--secondary">
                     Contact
                 </Button>
