@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Clove Crypto`,
+    title: `Clove Labs`,
     author: `Clove Team`,
-    description: `Power of Blockchain in Everyone's Pocket`,
+    description: `We research & develop solutions to challenging problems that impact millions of people`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -33,7 +33,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `clovecrypto`,
+        name: `clovelabs`,
         short_name: `clove`,
         start_url: `/`,
         background_color: `#ff3f3f`,
