@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Clove Labs`,
     author: `Clove Team`,
-    description: `We research & develop solutions to challenging problems that impact millions of people`,
+    description: `Driving the next wave of Blockchain adoption`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
