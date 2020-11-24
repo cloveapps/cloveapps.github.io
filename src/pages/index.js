@@ -146,7 +146,7 @@ const UpdateItem = styled("div")`
 const RenderBody = ({ home, products, updates, meta }) => (
   <>
     <Helmet
-      title={`Clove Crypto - Driving the next wave of Blockchain adoption`}
+      title={`Clove Labs - Driving the next wave of Blockchain adoption`}
       meta={[
         {
           name: `description`,
@@ -217,7 +217,10 @@ const RenderBody = ({ home, products, updates, meta }) => (
             target="_blank"
             rel="noopener noreferrer"
           >
-            <h3><span>{update.node.update_type[0].text}</span>: {update.node.update_title[0].text}</h3>
+            <h3>
+              <span>{update.node.update_type[0].text}</span>:{" "}
+              {update.node.update_title[0].text}
+            </h3>
           </a>
           <div>{update.node.update_body[0].text}</div>
         </UpdateItem>
